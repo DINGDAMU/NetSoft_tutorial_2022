@@ -1,7 +1,7 @@
 # P4Pi: P4 on Raspberry Pi for Research and Education 
 ## IEEE NetSoft 2022 tutorial
 
-Information
+Introduction
 -----------
 
 All general information related to this tutorial is available on our [Wiki page](https://github.com/p4lang/p4pi/wiki/P4Pi-Tutorial-NetSoft-2022).
