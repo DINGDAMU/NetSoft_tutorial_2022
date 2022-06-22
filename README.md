@@ -23,7 +23,12 @@ Installation
 3. ```
     cd NetSoft_tutorial_2022
    ```
+4. ```
+   ./p4app
+   ```
+When you run p4app at the first time, it will take some time to download the docker image.
 
+5. You are ready!
 
 Network topology
 --------
