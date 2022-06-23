@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-P4APP_IMAGE=${P4APP_IMAGE:-dingdamu/p4app-ddos:nwhhd}
+P4APP_IMAGE=${P4APP_IMAGE:-p4lang/p4app:latest}
 P4APP_CONTAINER_ARGS=${P4APP_CONTAINER_ARGS:-""}
 
 
@@ -51,15 +51,14 @@ function build-command {
 
 function run-p4app {
   APP_TO_RUN=/tmp/app.tar.gz
-  P4APP_NAME='hh'
-  docker run --privileged --interactive  -i --tty --rm \
+  P4APP_NAME=${P4APP_NAME:-"p4app_$RANDOM"}
+  docker run --privileged --interactive --tty --rm \
             --name "$P4APP_NAME" \
             -v $1:$APP_TO_RUN \
-            -e DISPLAY=$DISPLAY \
             -v "$P4APP_LOGDIR":/tmp/p4app_logs \
              $P4APP_CONTAINER_ARGS \
              $P4APP_IMAGE $APP_TO_RUN "${@:2}"
-         }
+}
 
 function run-command {
   # Run the .p4app package provided by the user.
@@ -128,8 +127,8 @@ function update-command {
 }
 
 function exec-command {
-  #container_id=${P4APP_NAME:-$(docker ps | grep -m1 p4app | awk '{print $1}')}
-  container_id='hh'
+  container_id=${P4APP_NAME:-$(docker ps | grep -m1 p4app_ | awk '{print $1}')}
+
   if [ -z "$container_id" ]; then
       (>&2 echo "Couldn't find any p4app currently running.")
       exit 1
